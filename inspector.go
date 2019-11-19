@@ -26,12 +26,24 @@ func (i *Filter) Preorder(types []ast.Node, f func(n ast.Node)) {
 		types = append(types, (*ast.File)(nil))
 	}
 
-	i.base.Preorder(types, func(n ast.Node) {
-		if f, ok := n.(*ast.File); ok && (!c || ignored(f, i.fset)) {
-			return
+	i.base.Nodes(types, func(n ast.Node, push bool) bool {
+		if !push {
+			return false
+		}
+
+		if f, ok := n.(*ast.File); ok {
+			if ignored(f, i.fset) {
+				return false
+			}
+
+			if !c {
+				return true
+			}
 		}
 
 		f(n)
+
+		return true
 	})
 }
 
@@ -43,9 +55,13 @@ func (i *Filter) Nodes(types []ast.Node, f func(n ast.Node, push bool) (prune bo
 	}
 
 	i.base.Nodes(types, func(n ast.Node, push bool) bool {
-		if push {
-			if f, ok := n.(*ast.File); ok && (!c || ignored(f, i.fset)) {
+		if f, ok := n.(*ast.File); ok {
+			if ignored(f, i.fset) {
 				return false
+			}
+
+			if !c {
+				return true
 			}
 		}
 
@@ -61,9 +77,13 @@ func (i *Filter) WithStack(types []ast.Node, f func(n ast.Node, push bool, stack
 	}
 
 	i.base.WithStack(types, func(n ast.Node, push bool, stack []ast.Node) bool {
-		if push {
-			if f, ok := n.(*ast.File); ok && (!c || ignored(f, i.fset)) {
+		if f, ok := n.(*ast.File); ok {
+			if ignored(f, i.fset) {
 				return false
+			}
+
+			if !c {
+				return true
 			}
 		}
 
@@ -72,6 +92,9 @@ func (i *Filter) WithStack(types []ast.Node, f func(n ast.Node, push bool, stack
 }
 
 func containsFile(types []ast.Node) bool {
+	if len(types) == 0 {
+		return true
+	}
 	for _, t := range types {
 		if _, ok := t.(*ast.File); ok {
 			return true
