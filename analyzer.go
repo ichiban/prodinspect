@@ -14,7 +14,7 @@ var Analyzer = &analysis.Analyzer{
 	Requires:         []*analysis.Analyzer{inspect.Analyzer},
 	Run:              run,
 	RunDespiteErrors: true,
-	ResultType:       reflect.TypeOf(new(Filter)),
+	ResultType:       reflect.TypeOf(new(Inspector)),
 }
 
 func run(pass *analysis.Pass) (interface{}, error) {

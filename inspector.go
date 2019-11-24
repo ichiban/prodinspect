@@ -7,26 +7,26 @@ import (
 	"strings"
 )
 
-type Filter struct {
-	base Inspector
+type Inspector struct {
+	base WithStacker
 	fset Filer
 }
 
-func New(base Inspector, fset Filer) *Filter {
-	return &Filter{
+func New(base WithStacker, fset Filer) *Inspector {
+	return &Inspector{
 		base: base,
 		fset: fset,
 	}
 }
 
-func (i *Filter) Preorder(types []ast.Node, f func(n ast.Node)) {
+func (i *Inspector) Preorder(types []ast.Node, f func(n ast.Node)) {
 	c := containsFile(types)
 
 	if !c {
 		types = append(types, (*ast.File)(nil))
 	}
 
-	i.base.Nodes(types, func(n ast.Node, push bool) bool {
+	i.base.WithStack(types, func(n ast.Node, push bool, _ []ast.Node) bool {
 		if !push {
 			return false
 		}
@@ -47,14 +47,14 @@ func (i *Filter) Preorder(types []ast.Node, f func(n ast.Node)) {
 	})
 }
 
-func (i *Filter) Nodes(types []ast.Node, f func(n ast.Node, push bool) (prune bool)) {
+func (i *Inspector) Nodes(types []ast.Node, f func(n ast.Node, push bool) (prune bool)) {
 	c := containsFile(types)
 
 	if !c {
 		types = append(types, (*ast.File)(nil))
 	}
 
-	i.base.Nodes(types, func(n ast.Node, push bool) bool {
+	i.base.WithStack(types, func(n ast.Node, push bool, _ []ast.Node) bool {
 		if f, ok := n.(*ast.File); ok {
 			if ignored(f, i.fset) {
 				return false
@@ -69,7 +69,7 @@ func (i *Filter) Nodes(types []ast.Node, f func(n ast.Node, push bool) (prune bo
 	})
 }
 
-func (i *Filter) WithStack(types []ast.Node, f func(n ast.Node, push bool, stack []ast.Node) (prune bool)) {
+func (i *Inspector) WithStack(types []ast.Node, f func(n ast.Node, push bool, stack []ast.Node) (prune bool)) {
 	c := containsFile(types)
 
 	if !c {
@@ -124,9 +124,7 @@ func generated(f *ast.File) bool {
 	return false
 }
 
-type Inspector interface {
-	Preorder(types []ast.Node, f func(n ast.Node))
-	Nodes(types []ast.Node, f func(n ast.Node, push bool) (prune bool))
+type WithStacker interface {
 	WithStack(types []ast.Node, f func(n ast.Node, push bool, stack []ast.Node) (prune bool))
 }
 

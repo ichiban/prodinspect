@@ -14,5 +14,5 @@ func TestFromFileSystem(t *testing.T) {
 	testdata := analysistest.TestData()
 	rs := analysistest.Run(t, testdata, Analyzer, "a")
 
-	assert.IsType((*Filter)(nil), rs[0].Result)
+	assert.IsType((*Inspector)(nil), rs[0].Result)
 }

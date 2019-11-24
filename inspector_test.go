@@ -65,7 +65,7 @@ func TestFilter_Preorder(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -135,7 +135,7 @@ func TestFilter_Preorder(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -196,7 +196,7 @@ func TestFilter_Preorder(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -259,7 +259,7 @@ func TestFilter_Preorder(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -313,7 +313,7 @@ func TestFilter_Preorder(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -379,7 +379,7 @@ func TestFilter_Nodes(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -465,7 +465,7 @@ func TestFilter_Nodes(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -530,7 +530,7 @@ func TestFilter_Nodes(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -597,7 +597,7 @@ func TestFilter_Nodes(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -655,7 +655,7 @@ func TestFilter_Nodes(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -725,7 +725,7 @@ func TestFilter_WithStack(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -937,7 +937,7 @@ func TestFilter_WithStack(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -1018,7 +1018,7 @@ func TestFilter_WithStack(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -1085,7 +1085,7 @@ func TestFilter_WithStack(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
@@ -1143,7 +1143,7 @@ func TestFilter_WithStack(t *testing.T) {
 			file: fs.File(1),
 		}
 
-		i := Filter{
+		i := Inspector{
 			base: base,
 			fset: &fset,
 		}
