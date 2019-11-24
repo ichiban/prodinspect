@@ -1,4 +1,4 @@
-package inspect
+package prodinspect
 
 import (
 	"reflect"
@@ -9,8 +9,8 @@ import (
 )
 
 var Analyzer = &analysis.Analyzer{
-	Name:             "filter",
-	Doc:              `AST traversal that ignores test files and generated files`,
+	Name:             "prodinspect",
+	Doc:              `AST traversal that ignores test and/or generated files`,
 	Requires:         []*analysis.Analyzer{inspect.Analyzer},
 	Run:              run,
 	RunDespiteErrors: true,

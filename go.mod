@@ -1,4 +1,4 @@
-module github.com/ichiban/inspect
+module github.com/ichiban/prodinspect
 
 go 1.13
 

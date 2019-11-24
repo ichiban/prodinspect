@@ -1,4 +1,4 @@
-package inspect
+package prodinspect
 
 import (
 	"go/ast"
